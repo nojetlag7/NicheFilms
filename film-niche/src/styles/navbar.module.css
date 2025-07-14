@@ -1,0 +1,126 @@
+.navbar {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: #000;
+  box-shadow: 0 2px 16px rgba(0,255,247,0.15);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00fff7;
+  text-shadow: 0 0 8px rgba(0, 255, 247, 0.6), 0 0 16px rgba(0, 255, 247, 0.3);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+}
+
+.searchContainer {
+  position: relative;
+}
+
+.searchInput {
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  background: #181c2b;
+  color: #00fff7;
+  box-shadow: 0 0 8px rgba(0, 255, 247, 0.4), 0 0 16px rgba(0, 255, 247, 0.2);
+  margin-right: 1rem;
+  transition: box-shadow 0.3s;
+}
+
+.searchInput:focus {
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.6), 0 0 30px rgba(0, 255, 153, 0.3);
+}
+
+.searchButton {
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, #00fff7 0%, #00ff99 100%);
+  color: #000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00fff7, 0 0 20px #00ff99;
+  transition: background 0.3s;
+}
+
+.searchButton:hover {
+  background: linear-gradient(90deg, #00ff99 0%, #00fff7 100%);
+}
+
+.searchSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #000;
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 255, 247, 0.2);
+}
+
+.suggestionsHeader {
+  padding: 0.75rem 1rem;
+  color: #00fff7;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.suggestionItem {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #ccc;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.suggestionItem:hover {
+  background: rgba(0, 255, 247, 0.1);
+  color: #00fff7;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLink {
+  color: #00fff7;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.navLink:hover {
+  background: rgba(0, 255, 247, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+}

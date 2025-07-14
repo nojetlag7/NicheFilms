@@ -1,0 +1,384 @@
+.container {
+  min-height: 100vh;
+  background: #000;
+  padding: 2rem;
+  padding-top: 7rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #00fff7;
+  text-shadow: 0 0 8px rgba(0, 255, 247, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #00ff99;
+  font-size: 1.1rem;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: #00fff7;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 255, 247, 0.3);
+  border-top: 3px solid #00fff7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.emptyState {
+  text-align: center;
+  color: #00fff7;
+  padding: 4rem 2rem;
+}
+
+.emptyState h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.exploreButton {
+  display: inline-block;
+  background: linear-gradient(90deg, #00fff7 0%, #00ff99 100%);
+  color: #000;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.exploreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 247, 0.4);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.sortControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sortControls label {
+  color: #00fff7;
+  font-weight: 500;
+}
+
+.sortSelect {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.sortSelect:focus {
+  border-color: #00fff7;
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+}
+
+.sortSelect option {
+  background: #000;
+  color: #00fff7;
+  border: none;
+}
+
+.statsToggle {
+  background: rgba(0, 255, 247, 0.2);
+  border: 1px solid #00fff7;
+  color: #00fff7;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.statsToggle:hover {
+  background: rgba(0, 255, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.statsSection {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.statsSection h3 {
+  color: #00fff7;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: rgba(0, 255, 247, 0.1);
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  background: rgba(0, 255, 247, 0.15);
+  transform: translateY(-2px);
+}
+
+.statLabel {
+  display: block;
+  color: #00ff99;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  display: block;
+  color: #00fff7;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 255, 247, 0.4);
+}
+
+.genreBreakdown {
+  border-top: 1px solid rgba(0, 255, 247, 0.2);
+  padding-top: 1.5rem;
+}
+
+.genreBreakdown h4 {
+  color: #00fff7;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.genreStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.genreStat {
+  background: rgba(0, 255, 153, 0.1);
+  border: 1px solid rgba(0, 255, 153, 0.3);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.genreName {
+  color: #00ff99;
+  font-size: 0.9rem;
+}
+
+.genreCount {
+  background: rgba(0, 255, 153, 0.2);
+  color: #00ff99;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.moviesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.movieCard {
+  background: rgba(0, 255, 247, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.movieCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 247, 0.3);
+}
+
+.movieLink {
+  text-decoration: none;
+  display: block;
+}
+
+.posterContainer {
+  height: 400px;
+  overflow: hidden;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movieInfo {
+  padding: 1.5rem;
+}
+
+.title {
+  color: #00fff7;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 6px rgba(0, 255, 247, 0.4);
+}
+
+.year {
+  color: #00ff99;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.genre {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.ratings {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.movieRating, .userRating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+
+.movieRating {
+  color: #00fff7;
+}
+
+.userRating {
+  color: #00ff99;
+}
+
+.star, .userStar {
+  font-size: 1.2rem;
+}
+
+.watchedDate {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.statsButton {
+  background: rgba(0, 255, 247, 0.2);
+  border: 2px solid #00fff7;
+  color: #00fff7;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.statsButton:hover {
+  background: rgba(0, 255, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.statsSection {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.statsSection h3 {
+  color: #00fff7;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 6px rgba(0, 255, 247, 0.4);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.statItem {
+  background: rgba(0, 255, 247, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.statLabel {
+  display: block;
+  color: #00ff99;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.statValue {
+  display: block;
+  color: #00fff7;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 255, 247, 0.4);
+}
