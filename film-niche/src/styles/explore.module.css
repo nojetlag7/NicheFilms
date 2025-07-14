@@ -1,0 +1,361 @@
+.container {
+  min-height: 100vh;
+  background: #000;
+  padding: 2rem;
+  padding-top: 7rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #00fff7;
+  text-shadow: 0 0 15px rgba(0, 255, 247, 0.6);
+  margin-bottom: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 247, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #00fff7;
+  box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.viewToggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.viewButton {
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.viewButton:hover {
+  background: rgba(0, 255, 247, 0.2);
+}
+
+.viewButton.active {
+  background: #00fff7;
+  color: #000;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+}
+
+.filterGroup label {
+  color: #00fff7;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.select {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #00fff7;
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+}
+
+.select option {
+  background: #222;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.clearFilters {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  border-radius: 6px;
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+.clearFilters:hover {
+  background: rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.resultsInfo {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #00ff99;
+  font-size: 1.1rem;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: #00fff7;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 255, 247, 0.3);
+  border-top: 3px solid #00fff7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.4);
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg);
+    box-shadow: 0 0 20px rgba(0, 255, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 247, 0.6);
+  }
+  100% { 
+    transform: rotate(360deg);
+    box-shadow: 0 0 20px rgba(0, 255, 247, 0.4);
+  }
+}
+
+.error {
+  text-align: center;
+  color: #ff6b6b;
+  padding: 3rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  margin: 2rem 0;
+}
+
+.error h2 {
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}
+
+.retryButton {
+  padding: 0.75rem 1.5rem;
+  background: #ff6b6b;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.retryButton:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+.noResults {
+  text-align: center;
+  color: #fff;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+  margin: 2rem 0;
+}
+
+.noResults h2 {
+  margin-bottom: 1rem;
+  color: #00fff7;
+}
+
+.browseAllButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #00fff7;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.browseAllButton:hover {
+  background: #00e6d9;
+  transform: translateY(-2px);
+}
+
+.moviesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.listView {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.movieLink {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.movieLink:hover {
+  transform: translateY(-5px);
+}
+
+.selectedMovie {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+  border-radius: 15px;
+  outline: 2px solid #00fff7;
+  outline-offset: 2px;
+}
+
+.selectedMovie:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .searchInput {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filterGroup {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .moviesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .moviesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters {
+    padding: 1rem;
+  }
+  
+  .filterGroup {
+    min-width: 120px;
+  }
+  
+  .searchInput {
+    width: 100%;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .viewToggle {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0.5rem;
+    padding-top: 5rem;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .filters {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+}

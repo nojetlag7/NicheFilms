@@ -1,0 +1,168 @@
+.movieCard {
+  background: rgba(0, 255, 247, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 255, 247, 0.1);
+}
+
+.movieCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 255, 247, 0.3), 0 0 20px rgba(0, 255, 247, 0.2);
+  border-color: rgba(0, 255, 247, 0.5);
+}
+
+.posterContainer {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.moviePoster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movieCard:hover .moviePoster {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  gap: 1rem;
+}
+
+.movieCard:hover .overlay {
+  opacity: 1;
+}
+
+.quickActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quickAction {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quickAction:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.quickAction.favorited {
+  background: rgba(255, 0, 0, 0.3);
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+.viewButton {
+  background: linear-gradient(90deg, #00fff7 0%, #00ff99 100%);
+  color: #000;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 247, 0.3);
+}
+
+.movieDetails {
+  padding: 1.5rem;
+}
+
+.movieTitle {
+  color: #00fff7;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
+  font-weight: 600;
+}
+
+.movieTitle mark {
+  background: rgba(0, 255, 247, 0.3);
+  color: #00fff7;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.movieYear {
+  color: #00ff99;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.movieGenre {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.movieRating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #00fff7;
+  font-weight: bold;
+}
+
+.star {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.6));
+}
+
+.movieCard:active {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(0);
+}
+.movieCard footer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.watchButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}  
