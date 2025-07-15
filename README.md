@@ -33,3 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 ## 🎭 Fun Fact
 top actors are Adrien Brody, Joaquin Phoenix, and Robin Williams
 best movies? Detachment,Joker(2018 obviously),Good Will Hunting
+
+
+## NB
+currently without actual api integration with movie data. will add soon
