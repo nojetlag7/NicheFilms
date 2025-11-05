@@ -1,36 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getWatchedMovies, getUserRatingsAsObject } from '../utils/localStorage';
-import { getMovieById } from '../data/mockMovies';
+import { getMovieById } from '../services/omdbApi';
 import { getMovieStats } from '../utils/movieUtils';
 import { Movie, WatchedMovie } from '../types/types';
 import styles from '../styles/watched.module.css';
 
+//watched movies page
 const Watched: React.FC = () => {
   const [watchedMovies, setWatchedMovies] = useState<(Movie & { watchedAt: number, userRating?: number })[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<'date' | 'rating' | 'title'>('date');
   const [showStats, setShowStats] = useState(false);
 
+  //load watched movies from api
   useEffect(() => {
     const loadWatchedMovies = async () => {
       try {
         setLoading(true);
         
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 300));
-        
         const watched = getWatchedMovies();
-        const moviesWithDetails = watched
-          .map(w => {
-            const movie = getMovieById(w.movieId);
-            return movie ? { ...movie, watchedAt: w.watchedAt, userRating: w.userRating } : null;
-          })
+        
+        //fetch movie details from api
+        const moviePromises = watched.map(async (w) => {
+          const movie = await getMovieById(w.movieId);
+          return movie ? { ...movie, watchedAt: w.watchedAt, userRating: w.userRating } : null;
+        });
+        
+        const moviesWithDetails = (await Promise.all(moviePromises))
           .filter(Boolean) as (Movie & { watchedAt: number, userRating?: number })[];
         
         setWatchedMovies(moviesWithDetails);
       } catch (error) {
-        console.error('Error loading watched movies:', error);
+        console.error('error loading watched movies:', error);
       } finally {
         setLoading(false);
       }

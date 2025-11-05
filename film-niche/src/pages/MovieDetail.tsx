@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { getMovieById } from '../data/mockMovies';
+import { getMovieById as fetchMovieById } from '../services/omdbApi';
 import { Movie } from '../types/types';
 import { 
   saveUserRating, 
@@ -11,6 +11,7 @@ import {
 import { isFavorite, toggleFavorite } from '../utils/favorites';
 import styles from '../styles/movieDetail.module.css';
 
+//movie detail page with ratings and actions
 const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const MovieDetail: React.FC = () => {
   const [isWatched, setIsWatched] = useState(false);
   const [isFav, setIsFav] = useState(false);
 
+  //load movie from api
   useEffect(() => {
     const loadMovie = async () => {
       if (!id) {
@@ -31,10 +33,8 @@ const MovieDetail: React.FC = () => {
       try {
         setLoading(true);
         
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 300));
-        
-        const movieData = getMovieById(id);
+        //fetch from omdb api
+        const movieData = await fetchMovieById(id);
         
         if (!movieData) {
           navigate('/explore');
@@ -46,7 +46,7 @@ const MovieDetail: React.FC = () => {
         setIsWatched(isMovieWatched(id));
         setIsFav(isFavorite(id));
       } catch (error) {
-        console.error('Error loading movie:', error);
+        console.error('error loading movie:', error);
         navigate('/explore');
       } finally {
         setLoading(false);

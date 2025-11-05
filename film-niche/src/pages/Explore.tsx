@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { Movie } from '../types/types';
-import { mockMovies } from '../data/mockMovies';
-import { searchMovies, filterMovies, sortMovies, getUniqueGenres, getUniqueYears } from '../utils/movieUtils';
+import { getPopularMovies, searchMoviesByTitle } from '../services/omdbApi';
+import { filterMovies, sortMovies, getUniqueGenres, getUniqueYears } from '../utils/movieUtils';
 import MovieCard from '../components/movieCard';
 import styles from '../styles/explore.module.css';
 
+//explore page with search, filter, sort
 const Explore: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -22,25 +23,32 @@ const Explore: React.FC = () => {
   const [selectedMovieIndex, setSelectedMovieIndex] = useState<number>(-1);
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
 
-  const genres = getUniqueGenres(mockMovies);
-  const years = getUniqueYears(mockMovies);
+  const genres = getUniqueGenres(movies);
+  const years = getUniqueYears(movies);
   const navigate = useNavigate();
 
+  //load movies from api
   useEffect(() => {
     const loadMovies = async () => {
       try {
         setLoading(true);
         setError(null);
         
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
         const searchQuery = searchParams.get('search') || '';
         setSearchTerm(searchQuery);
         
-        setMovies(mockMovies);
+        //fetch from omdb api
+        let result: Movie[];
+        if (searchQuery.trim()) {
+          result = await searchMoviesByTitle(searchQuery);
+        } else {
+          result = await getPopularMovies();
+        }
+        
+        setMovies(result);
       } catch (err) {
-        setError('Failed to load movies. Please try again.');
+        console.error('error loading movies:', err);
+        setError('failed to load movies. check your api key and connection.');
       } finally {
         setLoading(false);
       }
@@ -49,23 +57,24 @@ const Explore: React.FC = () => {
     loadMovies();
   }, [searchParams]);
 
+  //apply filters and sorting
   useEffect(() => {
-    let result = searchMovies(movies, searchTerm);
+    let result = [...movies];
     
-    // Apply filters
+    //apply filters
     result = filterMovies(result, {
       genre: selectedGenre || undefined,
       year: selectedYear || undefined,
       minRating: minRating || undefined
     });
 
-    // Apply sorting
+    //apply sorting
     result = sortMovies(result, sortBy, sortOrder);
 
     setFilteredMovies(result);
-  }, [searchTerm, movies, selectedGenre, selectedYear, minRating, sortBy, sortOrder]);
+  }, [movies, selectedGenre, selectedYear, minRating, sortBy, sortOrder]);
 
-  // Keyboard navigation
+  //keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (filteredMovies.length === 0) return;

@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Movie } from '../types/types';
-import { mockMovies } from '../data/mockMovies';
+import { getMovieById } from '../services/omdbApi';
 import { getFavorites } from '../utils/favorites';
 import MovieCard from '../components/movieCard';
 import styles from '../styles/favorites.module.css';
 
+//favorites page
 const Favorites: React.FC = () => {
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
 
+  //load favorites from api
   useEffect(() => {
     const loadFavorites = async () => {
       try {
         setLoading(true);
         const favoriteIds = getFavorites();
-        const favorites = mockMovies.filter(movie => favoriteIds.includes(movie.id));
-        setFavoriteMovies(favorites);
+        
+        //fetch movie details from api
+        const moviePromises = favoriteIds.map(id => getMovieById(id));
+        const movies = await Promise.all(moviePromises);
+        const validMovies = movies.filter((movie): movie is Movie => movie !== null);
+        
+        setFavoriteMovies(validMovies);
       } catch (error) {
-        console.error('Error loading favorites:', error);
+        console.error('error loading favorites:', error);
       } finally {
         setLoading(false);
       }
@@ -27,11 +34,15 @@ const Favorites: React.FC = () => {
     loadFavorites();
   }, []);
 
-  const handleFavoriteChange = () => {
-    // Refresh favorites when a movie is removed
+  //refresh favorites when movie is removed
+  const handleFavoriteChange = async () => {
     const favoriteIds = getFavorites();
-    const favorites = mockMovies.filter(movie => favoriteIds.includes(movie.id));
-    setFavoriteMovies(favorites);
+    
+    const moviePromises = favoriteIds.map(id => getMovieById(id));
+    const movies = await Promise.all(moviePromises);
+    const validMovies = movies.filter((movie): movie is Movie => movie !== null);
+    
+    setFavoriteMovies(validMovies);
   };
 
   if (loading) {
